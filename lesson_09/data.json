@@ -1,0 +1,14 @@
+[
+  {
+    "card_holder": "DMITRY BUEVICH",
+    "money": 180.0,
+    "card_number": "5112063074625585",
+    "account_number": "59441419110889896377"
+  },
+  {
+    "card_holder": "IVAN IVANOV",
+    "money": 120.0,
+    "card_number": "1838031955293563",
+    "account_number": "04132848634557745431"
+  }
+]
