@@ -1,5 +1,6 @@
 import random
 import json
+import os
 
 
 def get_random_digits(count: int) -> str:
@@ -10,11 +11,12 @@ def get_random_digits(count: int) -> str:
 
 
 class BankAccount:
-    def __init__(self, card_holder):
-        self.card_holder = card_holder.upper()
-        self.money = 0
-        self.account_number = get_random_digits(20)
-        self.card_number = get_random_digits(16)
+    def __init__(self, card_holder, money=0.0, card_number=None, account_number=None):
+        self.card_holder: str = card_holder.upper()
+        self.money: float = money
+        self.card_number: str = get_random_digits(16) if card_number is None else card_number
+        self.account_number: str = get_random_digits(20) \
+            if account_number is None else account_number
 
 
 def convert_bank_account_to_dict(bank_account: BankAccount) -> dict:
@@ -30,6 +32,13 @@ def save_accounts(bank_accounts: list[BankAccount], file_name: str):
     data = [convert_bank_account_to_dict(account) for account in bank_accounts]
     with open(file_name, 'w') as file:
         json.dump(data, file, indent=2)
+
+
+def load_accounts(file_name) -> list[BankAccount]:
+    if not os.path.exists(file_name):
+        return []
+    with open(file_name, 'r') as file:
+        return [BankAccount(**data) for data in json.load(file)]
 
 
 class Bank:
