@@ -43,22 +43,19 @@ def load_accounts(file_name) -> list[BankAccount]:
 
 class Bank:
     def __init__(self, bank_accounts: list[BankAccount] = None):
-        self.__bank_accounts: list[BankAccount] = bank_accounts or []
+        self.__bank_accounts: dict[str, BankAccount] = {
+            account.account_number: account for account in bank_accounts or []}
 
     def open_account(self, card_holder) -> BankAccount:
         account = BankAccount(card_holder)
-        self.__bank_accounts.append(account)
+        self.__bank_accounts[account.account_number] = account
         return account
 
     def __get_account(self, account_number: str) -> BankAccount:
-        for account in self.__bank_accounts:
-            if account.account_number == account_number:
-                return account
-        # There should be raise ValueError()
-        return None
+        return self.__bank_accounts[account_number]
 
     def get_all_bank_accounts(self) -> list[BankAccount]:
-        return self.__bank_accounts
+        return list(self.__bank_accounts.values())
 
     def add_money(self, account_number: str, money: float):
         target_account = self.__get_account(account_number)
