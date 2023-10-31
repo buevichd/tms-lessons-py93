@@ -1,4 +1,5 @@
 import random
+import json
 
 
 def get_random_digits(count: int) -> str:
@@ -14,6 +15,21 @@ class BankAccount:
         self.money = 0
         self.account_number = get_random_digits(20)
         self.card_number = get_random_digits(16)
+
+
+def convert_bank_account_to_dict(bank_account: BankAccount) -> dict:
+    return {
+        'card_holder': bank_account.card_holder,
+        'money': bank_account.money,
+        'card_number': bank_account.card_number,
+        'account_number': bank_account.account_number
+    }
+
+
+def save_accounts(bank_accounts: list[BankAccount], file_name: str):
+    data = [convert_bank_account_to_dict(account) for account in bank_accounts]
+    with open(file_name, 'w') as file:
+        json.dump(data, file, indent=2)
 
 
 class Bank:
