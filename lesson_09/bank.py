@@ -86,6 +86,22 @@ class Controller:
                     print(f'   Остаток на счету: {account.money}$')
                     print(f'   Номер карты: {account.card_number}')
                     print(f'   Держатель карты: {account.card_holder}')
+            elif action == 3:
+                account_number = input('Введите номер счёта: ')
+                money = float(input('Введите количество денег: '))
+                self.bank.add_money(account_number, money)
+            elif action == 4:
+                from_account_number = input('Введите номер счёта отправителя: ')
+                to_account_number = input('Введите номер счёта получателя: ')
+                money = float(input('Введите количество денег: '))
+                self.bank.transfer_money(from_account_number, to_account_number,
+                                         money)
+            elif action == 5:
+                from_account_number = input('Введите номер счёта отправителя: ')
+                to_external_number = input('Введите номер внешнего счёта: ')
+                money = float(input('Введите количество денег: '))
+                self.bank.external_transfer(from_account_number, to_external_number,
+                                            money)
             else:
                 print('Вы ввели неподдерживаемую команду')
 
