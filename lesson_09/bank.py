@@ -54,3 +54,16 @@ class Bank:
         print(f'Банк перевёл {money}$ с вашего счёта '
               f'{from_account_number} на внешний счёт '
               f'{to_external_number}')
+
+
+class Controller:
+    def __init__(self):
+        self.bank = Bank()
+
+    def run(self):
+        print('Здравствуйте, наш банк открылся!')
+
+
+if __name__ == '__main__':
+    controller = Controller()
+    controller.run()
