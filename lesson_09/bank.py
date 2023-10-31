@@ -71,6 +71,24 @@ class Controller:
             print('4. Перевести деньги между счетами')
             print('5. Совершить платёж')
 
+            action = int(input())
+            if action == 0:
+                print('До свидания!')
+                break
+            elif action == 1:
+                card_holder = input('Введите имя и фамилию держателя карты: ')
+                account = self.bank.open_account(card_holder)
+                print(f'Счёт {account.account_number} создан!')
+            elif action == 2:
+                print('Все счета:')
+                for account in self.bank.get_all_bank_accounts():
+                    print(f'Cчёт: {account.account_number}')
+                    print(f'   Остаток на счету: {account.money}$')
+                    print(f'   Номер карты: {account.card_number}')
+                    print(f'   Держатель карты: {account.card_holder}')
+            else:
+                print('Вы ввели неподдерживаемую команду')
+
 
 if __name__ == '__main__':
     controller = Controller()
