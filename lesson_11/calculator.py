@@ -34,9 +34,7 @@ def main():
             operation = input('Введите операцию (введите ! для выхода из программы): ')
             result = calculate(left, right, operation)
             print('Результат операции:', result, end='\n\n')
-        except ValueError as e:
-            print('Ошибка:', e, end='\n\n')
-        except ZeroDivisionError as e:
+        except (ValueError, ZeroDivisionError) as e:
             print('Ошибка:', e, end='\n\n')
         except CalculationExitException:
             print('Завершаем программу')
