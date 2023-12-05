@@ -1,8 +1,7 @@
+import sqlite3
 from dataclasses import dataclass
 
-from flask import Flask, abort, redirect, session, request
-from flask_session import Session
-import sqlite3
+from flask import Flask
 
 DATABASE_FILE = 'sqlite3.db'
 
