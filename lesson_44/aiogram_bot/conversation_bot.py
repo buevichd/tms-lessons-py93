@@ -112,7 +112,7 @@ async def skip_location(message: Message, state: FSMContext):
     )
 
 
-@dp.message(ConversationState.bio)
+@dp.message(ConversationState.bio, F.text)
 async def bio(message: Message, state: FSMContext):
     """Stores the info about the user and ends the conversation."""
     user = message.from_user
